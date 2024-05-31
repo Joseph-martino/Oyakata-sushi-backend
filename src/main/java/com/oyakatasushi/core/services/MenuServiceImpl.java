@@ -22,4 +22,14 @@ public class MenuServiceImpl implements IMenuService{
     public Menu getMenuById(Integer id) {
         return this.menuRepository.getById(id);
     }
+
+    @Override
+    public Menu getMenuByName(String name) {
+        return this.menuRepository.getByName(name);
+    }
+
+    @Override
+    public List<Menu> getMenusListByTerms(String term) {
+        return this.menuRepository.getMenusListByTerms(term);
+    }
 }

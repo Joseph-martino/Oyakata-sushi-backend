@@ -8,4 +8,8 @@ public interface IMenuRepository {
 
     List<Menu> getMenusList();
     Menu getById(Integer id);
+    Menu getByName(String name);
+    List<Menu> getMenusListByTerms(String term);
+
+
 }

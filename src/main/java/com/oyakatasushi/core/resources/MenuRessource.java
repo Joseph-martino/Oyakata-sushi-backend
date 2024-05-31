@@ -6,10 +6,7 @@ import com.oyakatasushi.core.repositories.MenuRepositoryImpl;
 import com.oyakatasushi.core.services.IMenuService;
 import com.oyakatasushi.core.services.MenuServiceImpl;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -27,7 +24,6 @@ public class MenuRessource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Menu> getMenusList(){
-        System.out.println("bonjour");
         return this.menuService.getMenusList();
     }
 
@@ -38,5 +34,10 @@ public class MenuRessource {
         return this.menuService.getMenuById(id);
     }
 
-
+    @GET
+    @Path("/name/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Menu> getMenuByName(@PathParam("name") String name){
+        return this.menuService.getMenusListByTerms(name);
+    }
 }
