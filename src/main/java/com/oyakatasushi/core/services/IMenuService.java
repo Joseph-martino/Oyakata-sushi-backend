@@ -9,4 +9,8 @@ public interface IMenuService {
     Menu getMenuById(Integer id);
     Menu getMenuByName(String name);
     List<Menu> getMenusListByTerms(String term);
+
+    //test pagination
+    List<Menu> getMenusListForPage(Integer pageNumber, Integer sizePage);
+    long getNumberTotalOfMenus();
 }

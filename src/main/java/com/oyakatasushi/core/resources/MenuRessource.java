@@ -21,11 +21,11 @@ public class MenuRessource {
         this.menuService = new MenuServiceImpl(this.menuRepository);
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Menu> getMenusList(){
-        return this.menuService.getMenusList();
-    }
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<Menu> getMenusList(){
+//        return this.menuService.getMenusList();
+//    }
 
     @GET
     @Path("/{id}")
@@ -40,4 +40,18 @@ public class MenuRessource {
     public List<Menu> getMenuByName(@PathParam("name") String name){
         return this.menuService.getMenusListByTerms(name);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Menu> getMenusListForPage(@QueryParam("pageNumber") Integer pageNumber, @QueryParam("pageSize") Integer pageSize){
+        return this.menuService.getMenusListForPage(pageNumber, pageSize);
+    }
+
+    @GET
+    @Path("/total")
+    @Produces(MediaType.APPLICATION_JSON)
+    public long getNumberTotalOfMenus(){
+        return this.menuService.getNumberTotalOfMenus();
+    }
+
 }

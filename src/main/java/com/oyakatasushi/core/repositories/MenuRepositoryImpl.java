@@ -3,6 +3,7 @@ package com.oyakatasushi.core.repositories;
 import com.oyakatasushi.core.entities.Menu;
 import com.oyakatasushi.core.EntityManagerHolder;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -33,9 +34,28 @@ public class MenuRepositoryImpl implements IMenuRepository{
     @Override
     public List<Menu> getMenusListByTerms(String term) {
         EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
-        TypedQuery<Menu> query = entityManager.createQuery("SELECT m from Menu m WHERE m.name LIKE CONCAT('%', :term, '%')", Menu.class);
+        TypedQuery<Menu> query = entityManager.createQuery("SELECT m FROM Menu m WHERE m.name LIKE CONCAT('%', :term, '%')", Menu.class);
         query.setParameter("term", term);
         List<Menu> menus = query.getResultList();
         return menus;
+    }
+
+    //test pagination
+    @Override
+    public List<Menu> getMenusListForPage(Integer pageNumber, Integer sizePage){
+        EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
+        TypedQuery<Menu> query = entityManager.createQuery("SELECT m FROM Menu m ORDER BY m.id", Menu.class);
+        query.setFirstResult((pageNumber -1) * sizePage);
+        query.setMaxResults(sizePage);
+        List<Menu> menus = query.getResultList();
+        return menus;
+    }
+
+    @Override
+    public long getNumberTotalOfMenus() {
+        EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
+        Query query = entityManager.createQuery("SELECT COUNT(m) FROM Menu m");
+        long totalNumberOfMenus = (long) query.getSingleResult();
+        return totalNumberOfMenus;
     }
 }

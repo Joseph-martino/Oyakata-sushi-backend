@@ -32,4 +32,15 @@ public class MenuServiceImpl implements IMenuService{
     public List<Menu> getMenusListByTerms(String term) {
         return this.menuRepository.getMenusListByTerms(term);
     }
+
+    //test pagination
+    @Override
+    public List<Menu> getMenusListForPage(Integer pageNumber, Integer sizePage){
+        return this.menuRepository.getMenusListForPage(pageNumber, sizePage);
+    }
+
+    @Override
+    public long getNumberTotalOfMenus() {
+        return this.menuRepository.getNumberTotalOfMenus();
+    }
 }
