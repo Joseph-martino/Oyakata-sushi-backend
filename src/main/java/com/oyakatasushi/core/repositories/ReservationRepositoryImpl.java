@@ -5,6 +5,7 @@ import com.oyakatasushi.core.entities.Reservation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.Date;
 
@@ -32,5 +33,13 @@ public class ReservationRepositoryImpl implements IReservationRepository{
             }
         }
         return reservation;
+    }
+
+    @Override
+    public long getNumberTotalOfReservation() {
+        EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
+        Query query = entityManager.createQuery("SELECT COUNT(r) FROM Reservation r");
+        long totalNumberOfReservations = (long) query.getSingleResult();
+        return totalNumberOfReservations;
     }
 }

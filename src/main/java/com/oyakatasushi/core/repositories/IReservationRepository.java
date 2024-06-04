@@ -6,6 +6,7 @@ import java.util.Date;
 public interface IReservationRepository {
 
     Reservation createReservation(Reservation reservation);
+    long getNumberTotalOfReservation();
 
 
 }

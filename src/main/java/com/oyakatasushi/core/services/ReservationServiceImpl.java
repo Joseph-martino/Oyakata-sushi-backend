@@ -14,4 +14,9 @@ public class ReservationServiceImpl implements IReservationService{
     public void createReservation(Reservation reservation) {
         this.reservationRepository.createReservation(reservation);
     }
+
+    @Override
+    public long getNumberTotalOfReservation() {
+        return this.reservationRepository.getNumberTotalOfReservation();
+    }
 }

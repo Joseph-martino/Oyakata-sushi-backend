@@ -6,6 +6,7 @@ import com.oyakatasushi.core.repositories.ReservationRepositoryImpl;
 import com.oyakatasushi.core.services.IReservationService;
 import com.oyakatasushi.core.services.ReservationServiceImpl;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -31,4 +32,11 @@ public class ReservationRessource {
         return reservation;
     }
 
+    @GET
+    @Path("/total")
+    @Produces(MediaType.APPLICATION_JSON)
+    public long getNumberTotalOfReservations(){
+        System.out.println("total: " + this.reservationService.getNumberTotalOfReservation());
+        return this.reservationService.getNumberTotalOfReservation();
+    }
 }
