@@ -3,6 +3,7 @@ package com.oyakatasushi.core.resources;
 import com.oyakatasushi.core.entities.Reservation;
 import com.oyakatasushi.core.repositories.IReservationRepository;
 import com.oyakatasushi.core.repositories.ReservationRepositoryImpl;
+import com.oyakatasushi.core.services.EmailSenderService;
 import com.oyakatasushi.core.services.IReservationService;
 import com.oyakatasushi.core.services.ReservationServiceImpl;
 
@@ -18,10 +19,12 @@ public class ReservationRessource {
 
     IReservationRepository reservationRepository;
     IReservationService reservationService;
+    EmailSenderService emailSenderService;
 
     public ReservationRessource(){
         this.reservationRepository = new ReservationRepositoryImpl();
-        this.reservationService = new ReservationServiceImpl(this.reservationRepository);
+        this.emailSenderService = new EmailSenderService();
+        this.reservationService = new ReservationServiceImpl(this.reservationRepository, this.emailSenderService);
     }
 
     @POST
