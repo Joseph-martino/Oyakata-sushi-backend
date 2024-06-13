@@ -23,7 +23,7 @@ public class SushiResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    List<Sushi> getMenusListForPage(@QueryParam("pageNumber") Integer pageNumber, @QueryParam("pageSize") Integer pageSize){
+    List<Sushi> getSushisListForPage(@QueryParam("pageNumber") Integer pageNumber, @QueryParam("pageSize") Integer pageSize){
         return this.sushiService.getSushisListForPage(pageNumber, pageSize);
     }
 
