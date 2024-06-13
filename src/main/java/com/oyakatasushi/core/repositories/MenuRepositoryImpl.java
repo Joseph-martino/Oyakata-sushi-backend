@@ -39,8 +39,6 @@ public class MenuRepositoryImpl implements IMenuRepository{
         List<Menu> menus = query.getResultList();
         return menus;
     }
-
-    //test pagination
     @Override
     public List<Menu> getMenusListForPage(Integer pageNumber, Integer sizePage){
         EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();

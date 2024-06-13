@@ -10,12 +10,7 @@ public interface IMenuRepository {
     Menu getById(Integer id);
     Menu getByName(String name);
     List<Menu> getMenusListByTerms(String term);
-
-
-    //test pagination
-
     List<Menu> getMenusListForPage(Integer pageNumber, Integer sizePage);
-
     long getNumberTotalOfMenus();
 
 
