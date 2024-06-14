@@ -1,5 +1,6 @@
 package com.oyakatasushi.core.services;
 
+import com.oyakatasushi.core.entities.Category;
 import com.oyakatasushi.core.entities.Sushi;
 import com.oyakatasushi.core.repositories.ISushiRepository;
 
@@ -20,6 +21,12 @@ public class SushiServiceImpl implements ISushiService{
     public List<Sushi> getSushisListByTerms(String term) {
         return this.sushiRepository.getSushisListByTerms(term);
     }
+
+    @Override
+    public List<Sushi> getSushisListByCategoryName(String categoryName) {
+        return this.sushiRepository.getSushisListByCategoryName(categoryName);
+    }
+
     @Override
     public List<Sushi> getSushisListForPage(Integer pageNumber, Integer pageSize) {
         return this.sushiRepository.getSushisListForPage(pageNumber, pageSize);

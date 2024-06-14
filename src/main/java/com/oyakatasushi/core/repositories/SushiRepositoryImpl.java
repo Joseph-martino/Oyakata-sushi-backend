@@ -1,6 +1,7 @@
 package com.oyakatasushi.core.repositories;
 
 import com.oyakatasushi.core.EntityManagerHolder;
+import com.oyakatasushi.core.entities.Category;
 import com.oyakatasushi.core.entities.Sushi;
 
 import javax.persistence.EntityManager;
@@ -26,6 +27,14 @@ public class SushiRepositoryImpl implements ISushiRepository{
         return sushis;
     }
 
+    @Override
+    public List<Sushi> getSushisListByCategoryName(String categoryName) {
+        EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
+        TypedQuery<Sushi> query = entityManager.createQuery("SELECT s FROM Sushi s INNER JOIN FETCH s.category c WHERE c.name = :name", Sushi.class);
+        query.setParameter("name", categoryName);
+        List<Sushi> sushis = query.getResultList();
+        return sushis;
+    }
     @Override
     public List<Sushi> getSushisListForPage(Integer pageNumber, Integer pageSize) {
         EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();

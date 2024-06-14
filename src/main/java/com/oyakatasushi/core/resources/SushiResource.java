@@ -1,5 +1,6 @@
 package com.oyakatasushi.core.resources;
 
+import com.oyakatasushi.core.entities.Category;
 import com.oyakatasushi.core.entities.Sushi;
 import com.oyakatasushi.core.repositories.ISushiRepository;
 import com.oyakatasushi.core.repositories.SushiRepositoryImpl;
@@ -23,28 +24,36 @@ public class SushiResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    List<Sushi> getSushisListForPage(@QueryParam("pageNumber") Integer pageNumber, @QueryParam("pageSize") Integer pageSize){
+    public List<Sushi> getSushisListForPage(@QueryParam("pageNumber") Integer pageNumber, @QueryParam("pageSize") Integer pageSize){
+        List<Sushi> sushis = this.sushiService.getSushisListForPage(pageNumber,pageSize);
         return this.sushiService.getSushisListForPage(pageNumber, pageSize);
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    Sushi getSushiById(@PathParam("id") Integer id){
+    public Sushi getSushiById(@PathParam("id") Integer id){
         return this.sushiService.getSushiById(id);
     }
 
     @GET
     @Path("name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    List<Sushi> getSushisListByTerms(@PathParam("name") String term){
+    public List<Sushi> getSushisListByTerms(@PathParam("name") String term){
         return this.sushiService.getSushisListByTerms(term);
     }
 
     @GET
     @Path("/total")
     @Produces(MediaType.APPLICATION_JSON)
-    long getNumberTotalOfSushis(){
+    public long getNumberTotalOfSushis(){
         return this.sushiService.getNumberTotalOfSushis();
+    }
+
+    @GET
+    @Path("/category/{categoryName}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Sushi> getSushisListByCategory(@PathParam("categoryName") String categoryName){
+        return this.sushiService.getSushisListByCategoryName(categoryName);
     }
 }
