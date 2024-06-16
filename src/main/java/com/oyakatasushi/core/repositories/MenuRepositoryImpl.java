@@ -2,6 +2,8 @@ package com.oyakatasushi.core.repositories;
 
 import com.oyakatasushi.core.entities.Menu;
 import com.oyakatasushi.core.EntityManagerHolder;
+import com.oyakatasushi.core.entities.Sushi;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -55,5 +57,14 @@ public class MenuRepositoryImpl implements IMenuRepository{
         Query query = entityManager.createQuery("SELECT COUNT(m) FROM Menu m");
         long totalNumberOfMenus = (long) query.getSingleResult();
         return totalNumberOfMenus;
+    }
+
+    @Override
+    public List<Menu> getMenusListByCategoryName(String categoryName) {
+        EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
+        TypedQuery<Menu> query = entityManager.createQuery("SELECT m FROM Menu m INNER JOIN FETCH m.category c WHERE c.name = :name", Menu.class);
+        query.setParameter("name", categoryName);
+        List<Menu> menus = query.getResultList();
+        return menus;
     }
 }

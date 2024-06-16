@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ICategoryService {
 
-    List<Category> getCategories();
+    List<Category> getCategoriesForSushis();
+    List<Category> getCategoriesForMenus();
     Category getCategoryById(Integer id);
 }

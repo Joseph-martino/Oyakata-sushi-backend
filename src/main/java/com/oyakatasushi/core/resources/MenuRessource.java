@@ -1,6 +1,7 @@
 package com.oyakatasushi.core.resources;
 
 import com.oyakatasushi.core.entities.Menu;
+import com.oyakatasushi.core.entities.Sushi;
 import com.oyakatasushi.core.repositories.IMenuRepository;
 import com.oyakatasushi.core.repositories.MenuRepositoryImpl;
 import com.oyakatasushi.core.services.IMenuService;
@@ -20,13 +21,6 @@ public class MenuRessource {
         this.menuRepository = new MenuRepositoryImpl();
         this.menuService = new MenuServiceImpl(this.menuRepository);
     }
-
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Menu> getMenusList(){
-//        return this.menuService.getMenusList();
-//    }
-
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -52,6 +46,13 @@ public class MenuRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public long getNumberTotalOfMenus(){
         return this.menuService.getNumberTotalOfMenus();
+    }
+
+    @GET
+    @Path("/category/{categoryName}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Menu> getMenusListByCategory(@PathParam("categoryName") String categoryName){
+        return this.menuService.getMenusListByCategoryName(categoryName);
     }
 
 }

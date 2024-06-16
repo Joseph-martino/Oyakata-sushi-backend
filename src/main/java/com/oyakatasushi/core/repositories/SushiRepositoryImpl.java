@@ -21,7 +21,7 @@ public class SushiRepositoryImpl implements ISushiRepository{
     @Override
     public List<Sushi> getSushisListByTerms(String term) {
         EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
-        TypedQuery<Sushi> query = entityManager.createQuery("SELECT s FROM Sushi s LIKE CONCAT('%', :term, '%')", Sushi.class);
+        TypedQuery<Sushi> query = entityManager.createQuery("SELECT s FROM Sushi s WHERE s.name LIKE CONCAT('%', :term, '%')", Sushi.class);
         query.setParameter("term", term);
         List<Sushi> sushis = query.getResultList();
         return sushis;

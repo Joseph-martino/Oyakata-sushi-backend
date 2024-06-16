@@ -17,6 +17,9 @@ public class Menu {
     private Double price;
     @Column(name="picture")
     private String picture;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
 
     public Menu(){
 
@@ -60,5 +63,13 @@ public class Menu {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

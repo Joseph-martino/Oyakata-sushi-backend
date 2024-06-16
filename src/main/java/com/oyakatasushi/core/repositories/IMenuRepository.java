@@ -12,6 +12,7 @@ public interface IMenuRepository {
     List<Menu> getMenusListByTerms(String term);
     List<Menu> getMenusListForPage(Integer pageNumber, Integer sizePage);
     long getNumberTotalOfMenus();
+    List<Menu> getMenusListByCategoryName(String categoryName);
 
 
 }

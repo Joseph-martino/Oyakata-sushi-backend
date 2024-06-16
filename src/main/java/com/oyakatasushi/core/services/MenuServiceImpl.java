@@ -43,4 +43,9 @@ public class MenuServiceImpl implements IMenuService{
     public long getNumberTotalOfMenus() {
         return this.menuRepository.getNumberTotalOfMenus();
     }
+
+    @Override
+    public List<Menu> getMenusListByCategoryName(String categoryName) {
+        return this.menuRepository.getMenusListByCategoryName(categoryName);
+    }
 }

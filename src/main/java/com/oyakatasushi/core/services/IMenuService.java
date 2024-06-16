@@ -13,4 +13,5 @@ public interface IMenuService {
     //test pagination
     List<Menu> getMenusListForPage(Integer pageNumber, Integer sizePage);
     long getNumberTotalOfMenus();
+    List<Menu> getMenusListByCategoryName(String categoryName);
 }

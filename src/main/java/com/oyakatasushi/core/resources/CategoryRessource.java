@@ -25,9 +25,17 @@ public class CategoryRessource {
     }
 
     @GET
+    @Path("/categorySushi")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Category> getCategories(){
-        return this.categoryService.getCategories();
+    public List<Category> getCategoriesForSushis(){
+        return this.categoryService.getCategoriesForSushis();
+    }
+
+    @GET
+    @Path("/categoryMenu")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Category> getCategoriesForMenus(){
+        return this.categoryService.getCategoriesForMenus();
     }
 
     @GET

@@ -13,8 +13,13 @@ public class CategoryServiceImpl implements ICategoryService{
         this.categoryRepository = categoryRepository;
     }
     @Override
-    public List<Category> getCategories() {
-        return this.categoryRepository.getCategories();
+    public List<Category> getCategoriesForSushis() {
+        return this.categoryRepository.getCategoriesForSushis();
+    }
+
+    @Override
+    public List<Category> getCategoriesForMenus() {
+        return this.categoryRepository.getCategoriesForMenus();
     }
 
     @Override

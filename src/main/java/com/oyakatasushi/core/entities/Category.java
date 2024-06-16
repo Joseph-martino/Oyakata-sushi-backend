@@ -15,6 +15,8 @@ public class Category {
 
     @Column(name="icon")
     private String icon;
+    @Column(name="type")
+    private String type;
 
     public Integer getId() {
         return id;
@@ -38,5 +40,13 @@ public class Category {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

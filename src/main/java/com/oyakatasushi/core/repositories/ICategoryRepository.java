@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ICategoryRepository {
 
-    List<Category> getCategories();
+    List<Category> getCategoriesForSushis();
+    List<Category> getCategoriesForMenus();
+
     Category getById(Integer id);
 }
