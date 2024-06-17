@@ -16,12 +16,12 @@ public class ReservationRessource {
 
     IReservationRepository reservationRepository;
     IReservationService reservationService;
-    //EmailSenderService emailSenderService;
+    EmailSenderService emailSenderService;
 
     public ReservationRessource(){
         this.reservationRepository = new ReservationRepositoryImpl();
-        //this.emailSenderService = new EmailSenderService();
-        this.reservationService = new ReservationServiceImpl(this.reservationRepository);
+        this.emailSenderService = new EmailSenderService();
+        this.reservationService = new ReservationServiceImpl(this.reservationRepository, this.emailSenderService);
     }
 
     @POST

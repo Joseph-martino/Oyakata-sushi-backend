@@ -10,6 +10,8 @@ public class EmailSenderService {
 
     public void sendConfirmationEmail(Reservation reservation) {
 
+        System.out.println("ici c'est l'emailSenderService");
+
         // Configuration des paramètres SMTP
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp-mail.outlook.com");
@@ -18,8 +20,8 @@ public class EmailSenderService {
         properties.put("mail.smtp.starttls.enable", "true");
 
         // Informations d'identification SMTP
-        final String username = "******";
-        final String password = "****";
+        final String username = "steacks_frites@hotmail.fr";
+        final String password = "Cestgele25!";
 
         // Création de la session SMTP
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -28,13 +30,14 @@ public class EmailSenderService {
                 return new PasswordAuthentication(username, password);
             }
         });
-        System.out.println("session: " + session);
 
+        System.out.println("session: " + session);
         System.out.println("mail expediteur est: " + username + " mail destinataire est: " + reservation.getEmail());
+
         try {
             // Création du message
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("your_email@example.com"));
+            message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(reservation.getEmail()));
             message.setSubject("Confirmation de réservation");
 

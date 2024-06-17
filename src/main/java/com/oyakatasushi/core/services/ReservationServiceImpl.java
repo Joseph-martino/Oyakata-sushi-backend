@@ -6,17 +6,17 @@ import com.oyakatasushi.core.repositories.IReservationRepository;
 public class ReservationServiceImpl implements IReservationService{
 
     IReservationRepository reservationRepository;
-    //EmailSenderService emailSenderService;
+    EmailSenderService emailSenderService;
 
-    public ReservationServiceImpl(IReservationRepository reservationRepository){
+    public ReservationServiceImpl(IReservationRepository reservationRepository, EmailSenderService emailSenderService){
         this.reservationRepository = reservationRepository;
-        //this.emailSenderService = emailSenderService;
+        this.emailSenderService = emailSenderService;
 
     }
     @Override
     public Reservation createReservation(Reservation reservation) {
         Reservation createdReservation = this.reservationRepository.createReservation(reservation);
-        //this.emailSenderService.sendConfirmationEmail(reservation);
+        this.emailSenderService.sendConfirmationEmail(reservation);
         return createdReservation;
     }
 
