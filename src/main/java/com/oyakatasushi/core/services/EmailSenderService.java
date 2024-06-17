@@ -10,7 +10,6 @@ public class EmailSenderService {
 
     public void sendConfirmationEmail(Reservation reservation) {
 
-        System.out.println("ici c'est emailsender");
         // Configuration des paramètres SMTP
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp-mail.outlook.com");
@@ -22,7 +21,6 @@ public class EmailSenderService {
         final String username = "******";
         final String password = "****";
 
-        System.out.println(("encore l'emailSender"));
         // Création de la session SMTP
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

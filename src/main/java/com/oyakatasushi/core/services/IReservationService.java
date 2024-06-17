@@ -4,6 +4,6 @@ import com.oyakatasushi.core.entities.Reservation;
 
 public interface IReservationService {
 
-    void createReservation(Reservation reservation);
+    Reservation createReservation(Reservation reservation);
     long getNumberTotalOfReservation();
 }
