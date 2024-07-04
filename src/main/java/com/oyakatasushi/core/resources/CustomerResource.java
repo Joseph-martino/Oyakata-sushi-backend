@@ -1,6 +1,7 @@
 package com.oyakatasushi.core.resources;
 
 import com.oyakatasushi.core.dtos.CustomerDTO;
+import com.oyakatasushi.core.dtos.LoginRequestDTO;
 import com.oyakatasushi.core.repositories.CustomerRepositoryImpl;
 import com.oyakatasushi.core.repositories.ICustomerRepository;
 import com.oyakatasushi.core.services.CustomerServiceImpl;
@@ -39,6 +40,17 @@ public class CustomerResource {
     public CustomerDTO createCustomer(CustomerDTO customerDto){
         System.out.println("Received customer request: " + customerDto);
         CustomerDTO createdCustomer = this.customerService.createCustomer(customerDto);
+        //System.out.println("createdCustomer: " + createdCustomer.getToken());
         return createdCustomer;
     }
+
+    @POST
+    @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public CustomerDTO login(LoginRequestDTO loginRequestDto){
+        CustomerDTO customerDTO = this.customerService.login(loginRequestDto.getEmail(), loginRequestDto.getPassword());
+        return customerDTO;
+    }
+
 }

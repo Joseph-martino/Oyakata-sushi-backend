@@ -8,4 +8,5 @@ public interface ICustomerService {
     CustomerDTO createCustomer(CustomerDTO customerDto);
     CustomerDTO updateCustomer(CustomerDTO customerDto);
     CustomerDTO getCustomerById(Integer id);
+    CustomerDTO login(String email, String rawPassword);
 }

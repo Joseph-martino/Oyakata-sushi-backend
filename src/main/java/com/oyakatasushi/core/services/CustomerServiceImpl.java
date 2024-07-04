@@ -16,9 +16,27 @@ public class CustomerServiceImpl implements ICustomerService{
     }
     @Override
     public CustomerDTO createCustomer(CustomerDTO customerDto) {
-        Customer customer = this.modelMapper.map(customerDto, Customer.class);
-        this.customerRepository.createCustomer(customer);
-        return customerDto;
+
+        try {
+            String hashedPassword = PasswordUtil.hashPassword(customerDto.getPassword());
+            customerDto.setPassword(hashedPassword);
+            Customer customer = this.modelMapper.map(customerDto, Customer.class);
+            this.customerRepository.createCustomer(customer);
+
+            if (customer.getCustomerId() == null) {
+                System.err.println("L'ID du client n'a pas été généré !");
+                return null;
+            }
+
+            String token = JwtUtil.generateToken(customer.getEmail(), customer.getCustomerId(), customer.getFamilyName(), customer.getFirstName());
+            customerDto.setToken(token);
+
+            return customerDto;
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la création du customer ou de la génération du token: " + e.getMessage());
+            e.printStackTrace();
+            return null; // Ou lancez une exception appropriée
+        }
     }
 
     @Override
@@ -32,6 +50,15 @@ public class CustomerServiceImpl implements ICustomerService{
     public CustomerDTO getCustomerById(Integer id) {
         Customer customer = this.customerRepository.getCustomerById(id);
         CustomerDTO customerDTO = this.modelMapper.map(customer, CustomerDTO.class);
+        return customerDTO;
+    }
+
+    @Override
+    public CustomerDTO login(String email, String rawPassword) {
+        Customer customer = this.customerRepository.login(email, rawPassword);
+        CustomerDTO customerDTO = this.modelMapper.map(customer, CustomerDTO.class);
+        String token = JwtUtil.generateToken(customer.getEmail(), customer.getCustomerId(), customer.getFamilyName(), customer.getFirstName());
+        customerDTO.setToken(token);
         return customerDTO;
     }
 }

@@ -23,6 +23,7 @@ public class CustomerDTO {
 
     private String city;
     private String createdAt;
+    private String token;
 
     public Integer getCustomerId() {
         return customerId;
@@ -94,5 +95,13 @@ public class CustomerDTO {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

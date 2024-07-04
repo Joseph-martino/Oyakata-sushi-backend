@@ -7,4 +7,5 @@ public interface ICustomerRepository {
     Customer createCustomer(Customer customer);
     Customer updateCustomer(Customer customer);
     Customer getCustomerById(Integer id);
+    Customer login(String email, String rawPassword);
 }
