@@ -1,19 +1,23 @@
 package com.oyakatasushi.core.repositories;
 
 import com.oyakatasushi.core.EntityManagerHolder;
-import com.oyakatasushi.core.entities.Reservation;
+import com.oyakatasushi.core.entities.Commande;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.util.Date;
 import java.util.List;
 
-public class ReservationRepositoryImpl implements IReservationRepository{
+public class CommandeRepositoryImpl implements ICommandeRepository{
     @Override
-    public Reservation createReservation(Reservation reservation) {
+    public Commande getCommandeById(Integer id) {
+        EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
+        Commande commande = entityManager.find(Commande.class, id);
+        return commande;
+    }
 
+    @Override
+    public Commande createCommande(Commande commande) {
         EntityManager entityManager = null;
         EntityTransaction transaction = null;
 
@@ -21,33 +25,26 @@ public class ReservationRepositoryImpl implements IReservationRepository{
             entityManager = EntityManagerHolder.getCurrentEntityManager();
             transaction = entityManager.getTransaction();
             transaction.begin();
-            entityManager.persist(reservation);
+            entityManager.persist(commande);
             transaction.commit();
-        } catch (Exception e){
+
+        }catch (Exception e){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
             }
             e.printStackTrace();
-        } finally {
+        }finally {
             if(entityManager != null){
                 entityManager.close();
             }
         }
-        return reservation;
+        return commande;
     }
 
     @Override
-    public long getNumberTotalOfReservation() {
+    public List<Commande> getCustomerCommandes(Integer customerId) {
         EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
-        Query query = entityManager.createQuery("SELECT COUNT(r) FROM Reservation r");
-        long totalNumberOfReservations = (long) query.getSingleResult();
-        return totalNumberOfReservations;
-    }
-
-    @Override
-    public List<Reservation> getCustomerReservations(Integer customerId) {
-        EntityManager entityManager = EntityManagerHolder.getCurrentEntityManager();
-        TypedQuery<Reservation> query = entityManager.createQuery("SELECT r FROM Reservation r WHERE r.customer.id = :customerId", Reservation.class);
+        TypedQuery<Commande> query = entityManager.createQuery("SELECT c FROM Commande c WHERE c.customer.id = :customerId", Commande.class);
         query.setParameter("customerId", customerId);
         return query.getResultList();
     }

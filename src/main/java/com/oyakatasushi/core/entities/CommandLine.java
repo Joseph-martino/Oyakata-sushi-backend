@@ -1,5 +1,7 @@
 package com.oyakatasushi.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class CommandLine {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "commande_id",nullable = false)
+    @JsonBackReference
     private Commande commande;
 
     public Integer getId() {

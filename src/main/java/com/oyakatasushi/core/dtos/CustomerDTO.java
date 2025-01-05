@@ -1,8 +1,8 @@
 package com.oyakatasushi.core.dtos;
 
-//import com.oyakatasushi.core.entities.Address;
+import com.oyakatasushi.core.entities.Commande;
 
-import javax.persistence.Column;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +20,11 @@ public class CustomerDTO {
     private String addressLine;
 
     private String zipCode;
-
     private String city;
     private String createdAt;
     private String token;
+    private List<ReservationDTO> reservations = new ArrayList<>();
+//    private List<CommandeDTO> commandes = new ArrayList<>();
 
     public Integer getCustomerId() {
         return customerId;
@@ -104,4 +105,20 @@ public class CustomerDTO {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public List<ReservationDTO> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<ReservationDTO> reservations) {
+        this.reservations = reservations;
+    }
+
+//    public List<CommandeDTO> getCommandes() {
+//        return commandes;
+//    }
+//
+//    public void setCommandes(List<CommandeDTO> commandes) {
+//        this.commandes= commandes;
+//    }
 }

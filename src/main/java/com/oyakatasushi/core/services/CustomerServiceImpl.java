@@ -1,7 +1,9 @@
 package com.oyakatasushi.core.services;
 
 import com.oyakatasushi.core.dtos.CustomerDTO;
+import com.oyakatasushi.core.dtos.CustomerLightDTO;
 import com.oyakatasushi.core.entities.Customer;
+import com.oyakatasushi.core.entities.Reservation;
 import com.oyakatasushi.core.repositories.ICustomerRepository;
 import org.modelmapper.ModelMapper;
 
@@ -53,12 +55,29 @@ public class CustomerServiceImpl implements ICustomerService{
         return customerDTO;
     }
 
+//    @Override
+//    public CustomerDTO login(String email, String rawPassword) {
+//        Customer customer = this.customerRepository.login(email, rawPassword);
+////        for(Reservation reservation : customer.getReservations()){
+////            System.out.println("reservation id: " + reservation.getId());
+////            System.out.println("reservation name: " + reservation.getFirstName());
+////            System.out.println("reservation familyName: " + reservation.getFamilyName());
+////            System.out.println("reservation email: " + reservation.getEmail());
+////            System.out.println("reservation nombre de personnes: " + reservation.getNumberOfPersons());
+////            System.out.println("reservation numéro de réservation: " + reservation.getReservationNumber());
+////        }
+//        CustomerDTO customerDTO = this.modelMapper.map(customer, CustomerDTO.class);
+//        String token = JwtUtil.generateToken(customer.getEmail(), customer.getCustomerId(), customer.getFamilyName(), customer.getFirstName());
+//        customerDTO.setToken(token);
+//        return customerDTO;
+//    }
+
     @Override
-    public CustomerDTO login(String email, String rawPassword) {
+    public CustomerLightDTO loginTest(String email, String rawPassword) {
         Customer customer = this.customerRepository.login(email, rawPassword);
-        CustomerDTO customerDTO = this.modelMapper.map(customer, CustomerDTO.class);
+        CustomerLightDTO customerLightDTO = this.modelMapper.map(customer, CustomerLightDTO.class);
         String token = JwtUtil.generateToken(customer.getEmail(), customer.getCustomerId(), customer.getFamilyName(), customer.getFirstName());
-        customerDTO.setToken(token);
-        return customerDTO;
+        customerLightDTO.setToken(token);
+        return customerLightDTO;
     }
 }

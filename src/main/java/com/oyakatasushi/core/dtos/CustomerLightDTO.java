@@ -1,47 +1,17 @@
-package com.oyakatasushi.core.entities;
+package com.oyakatasushi.core.dtos;
 
-import javax.persistence.*;
-import java.util.*;
+public class CustomerLightDTO {
 
-@Entity
-public class Customer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
     private Integer customerId;
-
-    @Column(name = "familyName", nullable = false)
     private String familyName;
-
-    @Column(name = "firstName", nullable = false)
     private String firstName;
-
-    @Column(name = "email", nullable = false, unique = true)
     private String email;
-
-    @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "addressLine", nullable = false)
     private String addressLine;
-
-    @Column(name = "zipCode", nullable = false)
     private String zipCode;
-
-    @Column(name = "city", nullable = false)
     private String city;
-
-    //@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdAt", nullable = true)
     private String createdAt;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Reservation> reservations = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//    private Set<Commande> commandes = new HashSet<>();
-
+    private String token;
 
     public Integer getCustomerId() {
         return customerId;
@@ -115,19 +85,11 @@ public class Customer {
         this.createdAt = createdAt;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
+    public String getToken() {
+        return token;
     }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public void setToken(String token) {
+        this.token = token;
     }
-
-//    public Set<Commande> getCommandes() {
-//        return commandes;
-//    }
-//
-//    public void setCommandes(Set<Commande> commandes) {
-//        this.commandes = commandes;
-//    }
 }

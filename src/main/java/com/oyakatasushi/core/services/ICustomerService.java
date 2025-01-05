@@ -1,6 +1,7 @@
 package com.oyakatasushi.core.services;
 
 import com.oyakatasushi.core.dtos.CustomerDTO;
+import com.oyakatasushi.core.dtos.CustomerLightDTO;
 import com.oyakatasushi.core.entities.Customer;
 
 public interface ICustomerService {
@@ -8,5 +9,6 @@ public interface ICustomerService {
     CustomerDTO createCustomer(CustomerDTO customerDto);
     CustomerDTO updateCustomer(CustomerDTO customerDto);
     CustomerDTO getCustomerById(Integer id);
-    CustomerDTO login(String email, String rawPassword);
+    //CustomerDTO login(String email, String rawPassword);
+    CustomerLightDTO loginTest(String email, String rawPassword);
 }

@@ -1,7 +1,11 @@
 package com.oyakatasushi.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Commande {
@@ -23,6 +27,10 @@ public class Commande {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="customer_id", nullable = false)
     private Customer customer;
+
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonManagedReference
+    private List<CommandLine> commandLineList = new ArrayList<>();
 
     public Integer getCommandeId() {
         return commandeId;
@@ -62,5 +70,13 @@ public class Commande {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<CommandLine> getCommandLineList() {
+        return commandLineList;
+    }
+
+    public void setCommandLineList(List<CommandLine> commandLineList) {
+        this.commandLineList = commandLineList;
     }
 }

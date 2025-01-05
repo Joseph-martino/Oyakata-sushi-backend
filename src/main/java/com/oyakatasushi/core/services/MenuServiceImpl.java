@@ -7,25 +7,15 @@ import java.util.List;
 
 public class MenuServiceImpl implements IMenuService{
 
-    private IMenuRepository menuRepository;
+    private final IMenuRepository menuRepository;
 
     public MenuServiceImpl(IMenuRepository menuRepository){
         this.menuRepository = menuRepository;
     }
 
     @Override
-    public List<Menu> getMenusList() {
-        return this.menuRepository.getMenusList();
-    }
-
-    @Override
-    public Menu getMenuById(Integer id) {
+    public Menu getMenuById(final Integer id) {
         return this.menuRepository.getById(id);
-    }
-
-    @Override
-    public Menu getMenuByName(String name) {
-        return this.menuRepository.getByName(name);
     }
 
     @Override

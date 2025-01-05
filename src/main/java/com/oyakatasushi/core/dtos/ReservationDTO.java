@@ -1,43 +1,34 @@
-package com.oyakatasushi.core.entities;
+package com.oyakatasushi.core.dtos;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
-@Entity
-public class Reservation {
+@JsonIgnoreProperties(value = {"customer"})
+public class ReservationDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="reservation_id")
     private Integer id;
 
-    @Column(name="reservation_number")
     private String reservationNumber;
 
-    @Column(name="first_name")
     private String firstName;
-    @Column(name="family_name")
+
     private String familyName;
-    @Column(name="email")
+
     private String email;
-    @Column(name="number_Of_Persons")
+
     private Integer numberOfPersons;
-    @Column(name="reservation_Date")
+
     private Date reservationDate;
 
-    @ManyToOne
-    @JoinColumn(name="customer_id",nullable = true)
-    private Customer customer;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = true)
+    private CustomerDTO customer;
     private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = true)
     private Date updatedAt;
 
-    public Reservation() {
+    public ReservationDTO() {
 
     }
 
@@ -97,11 +88,11 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    public Customer getCustomer() {
+    public CustomerDTO getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(CustomerDTO customer) {
         this.customer = customer;
     }
 
