@@ -9,21 +9,16 @@ import java.util.List;
 public class CustomerDTO {
 
     private Integer customerId;
-
     private String familyName;
-
     private String firstName;
-
     private String email;
-
     private String password;
     private String addressLine;
-
     private String zipCode;
     private String city;
     private String createdAt;
     private String token;
-    private List<ReservationDTO> reservations = new ArrayList<>();
+    //private List<ReservationDTO> reservations = new ArrayList<>();
 //    private List<CommandeDTO> commandes = new ArrayList<>();
 
     public Integer getCustomerId() {
@@ -106,13 +101,13 @@ public class CustomerDTO {
         this.token = token;
     }
 
-    public List<ReservationDTO> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<ReservationDTO> reservations) {
-        this.reservations = reservations;
-    }
+//    public List<ReservationDTO> getReservations() {
+//        return reservations;
+//    }
+//
+//    public void setReservations(List<ReservationDTO> reservations) {
+//        this.reservations = reservations;
+//    }
 
 //    public List<CommandeDTO> getCommandes() {
 //        return commandes;

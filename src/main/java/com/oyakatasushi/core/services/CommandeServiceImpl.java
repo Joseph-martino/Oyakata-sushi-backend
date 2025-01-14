@@ -3,6 +3,7 @@ package com.oyakatasushi.core.services;
 import com.oyakatasushi.core.dtos.CommandeDTO;
 import com.oyakatasushi.core.entities.CommandLine;
 import com.oyakatasushi.core.entities.Commande;
+import com.oyakatasushi.core.enums.CommandeStatus;
 import com.oyakatasushi.core.repositories.ICommandeRepository;
 import org.modelmapper.ModelMapper;
 
@@ -24,6 +25,7 @@ public class CommandeServiceImpl implements ICommandeService{
 
     @Override
     public CommandeDTO createCommande(CommandeDTO commandeDto) {
+        commandeDto.setStatus(CommandeStatus.PENDING);
         Commande commande = this.modelMapper.map(commandeDto, Commande.class);
         for (CommandLine commandLine : commande.getCommandLineList()) {
             commandLine.setCommande(commande);

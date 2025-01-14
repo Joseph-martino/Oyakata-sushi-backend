@@ -36,8 +36,8 @@ public class Customer {
     @Column(name = "createdAt", nullable = true)
     private String createdAt;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Reservation> reservations = new ArrayList<>();
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Reservation> reservations = new ArrayList<>();
 
 //    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 //    private Set<Commande> commandes = new HashSet<>();
@@ -115,13 +115,13 @@ public class Customer {
         this.createdAt = createdAt;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+//    public List<Reservation> getReservations() {
+//        return reservations;
+//    }
+//
+//    public void setReservations(List<Reservation> reservations) {
+//        this.reservations = reservations;
+//    }
 
 //    public Set<Commande> getCommandes() {
 //        return commandes;

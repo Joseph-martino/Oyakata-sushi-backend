@@ -4,6 +4,7 @@ import com.oyakatasushi.core.dtos.CommandLineDTO;
 import com.oyakatasushi.core.dtos.CommandeDTO;
 import com.oyakatasushi.core.entities.CommandLine;
 import com.oyakatasushi.core.entities.Commande;
+import com.oyakatasushi.core.enums.CommandeStatus;
 import com.oyakatasushi.core.repositories.CommandeRepositoryImpl;
 import com.oyakatasushi.core.repositories.ICommandeRepository;
 import com.oyakatasushi.core.services.CommandeServiceImpl;
@@ -52,6 +53,7 @@ public class CommandeResource {
         System.out.println("reference: " + commandeDto.getReference());
         System.out.println("number: " + commandeDto.getCommandeNumber());
         System.out.println("date: " + commandeDto.getCreatedDate());
+        System.out.println("statut: " + commandeDto.getStatus());
 //        System.out.println("customer first name: " + commandeDto.getCustomer().getFirstName());
 //        System.out.println("customer family name: " + commandeDto.getCustomer().getFamilyName());
         for(CommandLineDTO commandLineDto : commandeDto.getCommandLineList()){

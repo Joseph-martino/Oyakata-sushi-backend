@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ReservationServiceImpl implements IReservationService{
@@ -31,6 +32,8 @@ public class ReservationServiceImpl implements IReservationService{
         if (dayOfWeek == Calendar.MONDAY) {
             throw new IllegalArgumentException("Les réservations ne sont pas possibles les lundis.");
         }
+        reservation.setCreatedAt(new Date());
+        reservation.setUpdatedAt(new Date());
         Reservation createdReservation = this.reservationRepository.createReservation(reservation);
         this.emailSenderService.sendConfirmationEmail(reservation);
         return createdReservation;

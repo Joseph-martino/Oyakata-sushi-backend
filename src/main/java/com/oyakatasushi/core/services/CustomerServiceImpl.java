@@ -23,17 +23,22 @@ public class CustomerServiceImpl implements ICustomerService{
             String hashedPassword = PasswordUtil.hashPassword(customerDto.getPassword());
             customerDto.setPassword(hashedPassword);
             Customer customer = this.modelMapper.map(customerDto, Customer.class);
-            this.customerRepository.createCustomer(customer);
+
+            Customer createdCustomer = this.customerRepository.createCustomer(customer);
+            CustomerDTO createdCustomerDto = this.modelMapper.map(createdCustomer, CustomerDTO.class);
 
             if (customer.getCustomerId() == null) {
                 System.err.println("L'ID du client n'a pas été généré !");
                 return null;
             }
 
-            String token = JwtUtil.generateToken(customer.getEmail(), customer.getCustomerId(), customer.getFamilyName(), customer.getFirstName());
-            customerDto.setToken(token);
-
-            return customerDto;
+            String token = JwtUtil.generateToken(createdCustomer.getEmail(), createdCustomer.getCustomerId(), createdCustomer.getFamilyName(), createdCustomer.getFirstName());
+            createdCustomerDto.setToken(token);
+            System.out.println("createdCustomerDto id service: " + createdCustomerDto.getCustomerId());
+            System.out.println("createdCustomerDto firstName: " + createdCustomerDto.getFirstName());
+            System.out.println("createdCustomerDto familyName: " + createdCustomerDto.getFamilyName());
+            System.out.println("createdCustomerDto token: " + createdCustomerDto.getToken());
+            return createdCustomerDto;
         } catch (Exception e) {
             System.err.println("Erreur lors de la création du customer ou de la génération du token: " + e.getMessage());
             e.printStackTrace();
